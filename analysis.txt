@@ -1,0 +1,50 @@
+1. On BridgeGrid, change the value of discount and/or noise so that agent attemps to corss the bridge.
+
+a. When noise = 0.0, the agent attempts to cross the bridge. This is because
+noise determines "how often action results in unintended direction". Therefore,
+if the noise is 0.0, then the agent will always go the correct direction.
+
+b. Checking a wide range of discount parameters, there is no discount value that
+causes the agent to attempt a crossing. This is because discount determines how
+much future moves affect the action taken. Since, all the moves are 0 across the
+bridge and the falling off is -100.00, it is always better to stay in the current
+state (the initial state).
+
+c. If noise is close in magnitude to 0.0 or 1.0, then the agent will attempt to
+cross the bridge. Increasing discount increases the values of the states between
+the two ends (the most opposite states in terms of position) of the bridges.
+
+2. On DiscountGrid, for each task, give an assignment of discount, noise, and livingReward (or not possible) if it can't be done.
+
+a. discount = 0.2, noise = 0.0, livingReward = 0.0
+
+b. discount = 0.3, noise = 0.3, livingReward = 0.3
+
+c. discount = 0.7, noise = 0.0, livingReward = 0.3
+
+d. discount = 0.9, noise = 0.5, livingReward = 0.3
+
+e. discount = 0.0, noise = 0.5, livingReward = 0.8
+
+3. Describe the grid world instance you added to Grids.py.
+   What interesting decisions does it force the agent to make?
+   How are those decisions affected by the agent's parameters?
+
+   The grid world instance we added has the agent start in the center and on the
+   corners are 4 positive payoffs with increasing values and between the center
+   and the corners are 4 negative payoffs reflecting the opposite of the
+   positive payoffs. It forces the agent to decide between high risk high reward,
+   or to just play it safer.
+
+   With a lower noise, the agent will go for the highest reward because there is
+   less of a chance for it to mess up and reach the negative payoff. The way
+   discount affects the agent also depends on the noise. If the noise is low,
+   and the discount is high, the agent will want to go down and right to the
+   +4 payoff because it is thinking about the future more and wants the higher
+   reward. If the noise is high and the discount is low, the agent will go left
+   and then it doesn't really care if it reaches +1 or +2 payoff because it is
+   not thinking about the future that much and only wants to avoid the higher in
+   magnitude negative values (-3 and -4). With a higher living reward, the agent
+   will want to go toward the left, because the negative payoffs are less
+   extreme so it'll have a "better" chance of living. Therefore, there are a wide
+   arrange of end results based on the parameters.
